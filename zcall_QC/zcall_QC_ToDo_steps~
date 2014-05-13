@@ -1,0 +1,8 @@
+Link to data _Matrix_plink_cleaned
+run RunAllCalibrate with:
+Path ('root' of zcall_QC or just . when standing here)
+Datafile (use the link)
+It will create the concordance folder.
+Look through the results, find the best and use it with zCall:
+zCall -R Final_Report_Matrix_plink_cleaned (link) -T Chosen_Threshold -O Output_Folder/plink_name
+DONE!
