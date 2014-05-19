@@ -1,6 +1,11 @@
 Update alleles with:
-plink --noweb --tfile ../../zcall_QC/output/zcall_tcore (or whatever name you have zcall) --update-alleles ../../scripted_QC/alleles.list --make-bed --out zcall_core
 Suggestion: Do the pedigree QC first.
-qsub LDPrune.sh after hwe or not:
-LDPrune just need the plink-stem name (full path)
+
+(BEFORE PED)
+plink --noweb --tfile ../../zcall_QC/output/zcall_tcore (or whatever name you have zcall) --update-alleles ../../scripted_QC/alleles.list --hwe 0.005 --make-bed --out zcall_hwe0.005
+(AFTER PED)
+plink --noweb --bfile ../../pedigree_QC/zcall_pedQC (or whatever name you have zcall) --update-alleles ../../scripted_QC/alleles.list --hwe 0.005 --make-bed --out zcall_hwe0.005
+
+qsub LDPrune from the scripts folder.
+LDPrune just need the plink-stem name (full path) as argument
 Run the idb_UN.r script on the .genome file and provide a plotname (full paths).

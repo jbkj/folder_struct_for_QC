@@ -1,0 +1,53 @@
+QC started _ by _
+
+We start with _ individuals and _ SNPs.
+
+We used a 0.05 cut-off for individuals and SNPs missingness, removing _ individuals and _ SNPs, leaving:
+_ SNPs
+_ indivuals
+
+For the inbreeding QC we use the following cut-offs:
+Rare alleles: 
+Common alleles:
+This remove _ individuals leaving:
+_ individuals
+
+For the PCA QC we use the following cut-offs:
+PCA1: 
+PCA2: 
+Removing _ individuals leaving:
+_ individuals
+Thus after coarse QC we have removed at total of _ individuals and _ SNPs, leaving for zcall:
+_ individuals and
+_ SNPs
+------------------------------
+zcall QC:
+We use Threshold_ with the following concordance:
+
+
+From the pedigree QC we remove _ doublicates and _ individuals with missing or wrong particid (other projects on chip), leaving:
+_ individuals
+
+
+Before LDpruning we use a HWE threshold on 0.005 which removes _ SNPs leaving:
+_ SNPs.
+
+In IBD QC we remove _ individuals leaving:
+_ individuals
+
+From Gender QC we remove _ individuals with missing or wrong gender-code, leaving:
+_ indiviuals
+
+In Barcoding QC we remove _ mismatched samples and saves _ swapped sampled, leaving:
+_ individuals
+
+Thus, the final number of individuals and SNPs removed by QC is:
+BEFORE QC:
+_ individuals
+_ SNPs
+Leaving the final number of individuals and SNPs to be:
+AFTER QC:
+_ individuals
+_ SNPs
+
+QC-report finished by _ the _ 

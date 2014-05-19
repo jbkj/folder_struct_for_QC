@@ -1,4 +1,5 @@
 Link to data _Matrix_plink_cleaned
+link to threshold folder in output folder
 run RunAllCalibrate with:
 RunAlleCalibrate PATH DATAFILE
 Path ('root' of zcall_QC or just . when standing here)
