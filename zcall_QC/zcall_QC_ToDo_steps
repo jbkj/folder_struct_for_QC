@@ -7,8 +7,8 @@ Datafile (use the link you just created. Remember use the full path, ie: ./FDT_M
 It will create the concordance folder and a lot of qsub outs.
 Look through the results, find the best and use it with zCall:
 zCall -R Final_Report_Matrix_plink_cleaned (link) -T Chosen_Threshold -O Output_Folder/plink_name
-update alleles and redo geno with plink (while in the output dir):
-plink --noweb --tfile plink_name --update-alleles ../../scripted_QC/alleles.list --geno 0.05 --make-bed --out zcall_core
+update alleles with plink (while in the output dir):
+plink --noweb --tfile plink_name --update-alleles ../../scripted_QC/alleles.list --make-bed --out zcall_core
 Extract, from MatrixMissing.lmiss, all the snps that have to high a missing rate and sort them out. You can't use plinks geno after zcall.
 use in scriptedQC/output/
 awk '$5>0.05 {print $2}' MatrixMissing.lmiss > ../../zcall_QC/output/missing_snps_from_scriptedQC
