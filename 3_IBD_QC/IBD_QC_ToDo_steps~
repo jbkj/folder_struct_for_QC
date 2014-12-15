@@ -1,0 +1,16 @@
+Update alleles with:
+Suggestion: Do the pedigree QC and update alleles first
+
+(BEFORE PED)
+plink --noweb --bfile ../../zcall_QC/output/zcall_core (or whatever name you have zcall) --hwe 0.005 --make-bed --out zcall_hwe0.005
+(AFTER PED)
+plink --noweb --bfile ../../pedigree_QC/zcall_pedQC (or whatever name you have zcall) --hwe 0.005 --make-bed --out zcall_hwe0.005
+
+qsub LDPrune from the scripts folder.
+LDPrune just need the plink-stem name (full path) as argument
+Run the idb_UN.r script on the .genome file and provide a plotname (full paths).
+To remove related individuals in the cohort (remember the plots shows only individuals expected to be unrelated), use awk:
+awk '$7<0.5 {print $1,$2"\n"$3,$4}' <.genome-file> > Failed_IBD_QC_Indidividuals
+
+Then plink remove on file without HWE:
+plink --noweb --bfile <plink.stem> --remove Failed_IBD_QC --make-bed --out IBDQC
