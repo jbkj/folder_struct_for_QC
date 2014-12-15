@@ -80,7 +80,7 @@ for j in range(0,len(listdir(path+"/output"))):
     if(listdir(path+"/output")[j]=='MatrixAllUpdate.bed'):
         plink_update_needed = False
 
-plink_updater = "plink --noweb --tfile "+path+"/output/MatrixForAll --update-alleles "+path+"/alleles.list --allow-no-sex --make-bed --out "+path+"/output/MatrixAllUpdate"
+plink_updater = "plink19 --noweb --tfile "+path+"/output/MatrixForAll --update-alleles "+path+"/alleles.list --allow-no-sex --make-bed --out "+path+"/output/MatrixAllUpdate"
 if(plink_update_needed):
     system(plink_updater)
 
@@ -96,7 +96,7 @@ for j in range(0,len(listdir(path+"/output"))):
         
 
 if(missing_needed):
-    system("plink --noweb --bfile "+path+"/output/MatrixAllUpdate --missing --allow-no-sex --out "+path+"/output/MatrixMissing")
+    system("plink19 --noweb --bfile "+path+"/output/MatrixAllUpdate --missing --allow-no-sex --out "+path+"/output/MatrixMissing")
     system(path+"/Rmiss.R")
 
     view_missingness = str(raw_input("Do you want to see the plots? type i for indivduals, l for locus or b for both. If you don't want to see the plots type n\n"))
@@ -122,8 +122,8 @@ if(GenoMind_needed):
     geno_threshold = str(raw_input("Please choose a geno-threshold (maximum missing data pr. SNP - 5% = 0.05))?\n"))
     mind_threshold = str(raw_input("Please choose a mind-threshold (max. missing data pr. individual)\n"))
 
-    system("plink --noweb --bfile "+path+"/output/MatrixAllUpdate --geno "+geno_threshold+" --allow-no-sex --make-bed --out "+path+"/output/MatrixGeno")
-    system("plink --noweb --bfile "+path+"/output/MatrixGeno --mind "+mind_threshold+" --allow-no-sex --make-bed --out "+path+"/output/MatrixGenoMind")
+    system("plink19 --noweb --bfile "+path+"/output/MatrixAllUpdate --geno "+geno_threshold+" --allow-no-sex --make-bed --out "+path+"/output/MatrixGeno")
+    system("plink19 --noweb --bfile "+path+"/output/MatrixGeno --mind "+mind_threshold+" --allow-no-sex --make-bed --out "+path+"/output/MatrixGenoMind")
 
 
 Inbreed_needed = True
@@ -170,14 +170,14 @@ if(Inbreed_needed):
 
     
     print("Now removing the samples the failed the inbreeding test\n")
-    system("plink --noweb --bfile "+path+"/output/MatrixGenoMind --allow-no-sex --make-bed --remove "+path+"/output/dropsamples_het.txt --out "+path+"/output/MatrixInbreed")
+    system("plink19 --noweb --bfile "+path+"/output/MatrixGenoMind --allow-no-sex --make-bed --remove "+path+"/output/dropsamples_het.txt --out "+path+"/output/MatrixInbreed")
 
 
 
 PCA_needed = True
 
-for j in range(0,len(listdir(path))):
-    if(listdir(path)[j]=='ami_pca_outliers'):
+for j in range(0,len(listdir(path + '/output'))):
+    if(listdir(path + '/output')[j]=='MatrixPCAQC.bed'):
         PCA_needed = False
 
 
@@ -200,28 +200,8 @@ if(aimQC=="y"):
             system("display "+path+"/PCA_with_cut-offs.png 2> /dev/null &")
             system("display "+path+"/PCA.png 2> /dev/null &")
             PCA_satisfied = str(raw_input("If you are satisfied with the chosen cut-offs type: y, otherwise type: n\n"))    
+        print('plink19 --noweb --bfile '+path+"/output/MatrixInbreed --remove " + path + "/ami_pca_outliers --make-bed --out "+path+"/output/MatrixPCAQC")
+        system('plink19 --noweb --bfile '+path+"/output/MatrixInbreed --remove " + path + "/ami_pca_outliers --make-bed --out "+path+"/output/MatrixPCAQC")
+        print('use MatrixPCAQC for further QC')
 
-
-
-Geno_irem = ""
-GenoMind_irem = ""
-ami_removed = ""
-inbreed_removed = ""
-
-waiting10 = str(raw_input("This uses z-call version 3 and will therefor create it's own cluster file (as according to the z-call manual). The removed individuals through the plink QC will be stored in 'removed individuals' and after removing these from the final report the best SNPs is used to create the cluster file.\nPress enter to continue\n"))
-for i in range(0,len(listdir(path+"/output"))):
-    if(listdir(path+"/output")[i]=='MatrixGenoMind.irem'):
-        GenoMind_irem = path+"/output/MatrixGenoMind.irem "
-    if(listdir(path+"/output")[i]=='MatrixGeno.irem'):
-        Geno_irem = path+"/output/MatrixGeno.irem "
-    if(listdir(path+"/output")[i]=='dropsamples_het.txt'):
-        inbreed_removed = path+"/output/dropsamples_het.txt "
-
-for i in range(0,len(listdir(path))):
-    if(listdir(path)[i]=="ami_pca_outliers"):
-        ami_removed = path+"/ami_pca_outliers "
-
-print("cat "+ GenoMind_irem + Geno_irem + inbreed_removed + ami_removed + " | awk '{print $1,$2}' > "+path+"/removed_ind")
-system("cat "+ GenoMind_irem + Geno_irem + inbreed_removed + ami_removed + " | awk '{print $1,$2}' > "+path+"/removed_ind")
-
-print('\n--------------------------------------------------------\nEnd of scripted QC - please continue manually with 2_pedigree_QC\n--------------------------------------------------------\n')
+print('\n--------------------------------------------------------\nEnd of scripted QC - please continue manually with 2_pedigree_QC and remember to record all removed individuals in a complete list with barcodes and particids\n--------------------------------------------------------\n')
