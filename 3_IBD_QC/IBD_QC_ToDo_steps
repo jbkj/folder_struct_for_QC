@@ -1,5 +1,5 @@
-Update alleles with:
-plink19 --noweb --bfile ../../pedigree_QC/COHORT_pedQC --hwe 0.005 --make-bed --out COHORT_pedQC_hwe0.005
+Prune with a Hardy-Weinberg Eqiulibrium threshold of 0.005:
+plink19 --bfile ../2_pedigree_QC/COHORT_PEDQC --hwe 0.005 --make-bed --out output/COHORT_hwe0.005
 
 qsub LDPrune from the scripts folder.
 LDPrune just need the plink-stem name (full path) as argument
