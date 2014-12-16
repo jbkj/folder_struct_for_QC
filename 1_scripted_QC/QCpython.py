@@ -206,7 +206,7 @@ if(aimQC=="y"):
         
         ami_command = "sed 's/\.1//g' "+path+"/ami_pca_outliers | sort | uniq | sed 's/\\t/ /g' > "+path+"/removed_ind_barcodes"
         inbreed_command = "cat "+path+"/output/dropsamples_het.txt | sort | uniq | sed 's/\\t/ /g' >> "+path+"/removed_ind_barcodes"
-        mind_command = "cat "+path+"/output/MatrixGenoMind.irem >> "+path+"/removed_ind_barcodes"
+        mind_command = "cat "+path+"/output/MatrixGenoMind.irem | sed 's/\\t/ /g' >> "+path+"/removed_ind_barcodes"
 
         print(ami_command)
         print(inbreed_command)
