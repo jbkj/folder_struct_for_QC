@@ -21,9 +21,6 @@ PCA1:
 PCA2: 
 Removing _ individuals leaving:
 _ individuals
-Thus after coarse QC we have removed at total of _ individuals and _ SNPs, leaving for zcall:
-_ individuals and
-_ SNPs
 
 
 From the pedigree QC we remove _ doublicates and _ individuals with missing or wrong particid (other projects on chip), leaving:
