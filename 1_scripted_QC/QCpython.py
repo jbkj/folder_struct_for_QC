@@ -203,5 +203,16 @@ if(aimQC=="y"):
         print('plink19 --noweb --bfile '+path+"/output/MatrixInbreed --remove " + path + "/ami_pca_outliers --make-bed --out "+path+"/output/MatrixPCAQC")
         system('plink19 --noweb --bfile '+path+"/output/MatrixInbreed --remove " + path + "/ami_pca_outliers --make-bed --out "+path+"/output/MatrixPCAQC")
         print('use MatrixPCAQC for further QC')
+        
+        remove_ind_list_command = "cat <(sed 's/\.1//g' "+path+"/ami_pca_outliers | sort | uniq ) <(cat "+path+"/output/dropsamples_het.txt | sort | uniq ) "+path+"/output/MatrixGenoMind.irem | sed 's/\t/ /g' > "+path+"removed_ind_barcodes"
+        print(remove_ind_list_command)
+        system(remove_ind_list_command)
+else:
+        remove_ind_list_command = "cat <(cat "+path+"/output/dropsamples_het.txt | sort | uniq ) "+path+"/output/MatrixGenoMind.irem | sed 's/\t/ /g' > "+path+"removed_ind_barcodes"
+        print(remove_ind_list_command)
+        system(remove_ind_list_command)
+        print('\n--------------------------------------------------------\nEnd of scripted QC - please continue manually with 2_pedigree_QC with the MatrixInbreed file and remember to record all removed individuals in the removed_ind_barcodes and add particids when possible for a complete list\n--------------------------------------------------------\n')        
+        exit(0)
 
-print('\n--------------------------------------------------------\nEnd of scripted QC - please continue manually with 2_pedigree_QC and remember to record all removed individuals in a complete list with barcodes and particids\n--------------------------------------------------------\n')
+print('\n--------------------------------------------------------\nEnd of scripted QC - please continue manually with 2_pedigree_QC with the MatrixPCAQC file and remember to record all removed individuals in the removed_ind_barcodes and add particids when possible for a complete list\n--------------------------------------------------------\n')
+exit(0)
