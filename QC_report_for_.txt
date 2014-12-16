@@ -1,8 +1,8 @@
 QC started _ by _
 
-Cohort name:
+Cohort name: _
 
-Chip used:
+Chip used: _
 
 We start with _ individuals and _ SNPs.
 
@@ -11,14 +11,14 @@ _ SNPs
 _ indivuals
 
 For the inbreeding QC we use the following cut-offs:
-Rare alleles: 
-Common alleles:
+Rare alleles: _ to _
+Common alleles: _ to _
 This remove _ individuals leaving:
 _ individuals
 
 For the PCA QC we use the following cut-offs:
-PCA1: 
-PCA2: 
+PCA1: _ to _
+PCA2: _ to _
 Removing _ individuals leaving:
 _ individuals
 
@@ -47,25 +47,29 @@ For the TOP strand version we remove _ SNPs, leaving the final number:
 _ indiviuals 
 _ SNPs
 
-All removed individuals are recorded in removed_individuals in the root folder with this document.
-Both particid and barcode is recorded when possible.
+All removed individuals are recorded (as barcodes) in removed_individuals in the root folder with this document.
 
 The two final plinkQC versions (TOP and PLUS_b37) is put in /eva/data/clean/_/chip/
 as well as linked in the final folder from this directory
-
 
 Thus, the final number of individuals and SNPs removed by QC is:
 BEFORE QC:
 _ individuals
 _ SNPs
 
-Removed in QC:
+REMOVED in QC:
 _ individuals
+TOP:
+_ SNPs
+PLUS:
 _ SNPs
 
 Leaving the final number of individuals and SNPs to be:
 AFTER QC:
 _ individuals
+TOP:
+_ SNPs
+PLUS:
 _ SNPs
 
 QC-report finished by _ the _ 
