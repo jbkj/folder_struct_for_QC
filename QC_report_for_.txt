@@ -32,7 +32,7 @@ _ SNPs.
 In IBD QC we remove _ individuals leaving:
 _ individuals
 
-From Gender QC we remove _ individuals with missing or wrong gender-code, leaving:
+From Sex QC we remove _ individuals with missing (SNP = 0) or wrong gender-code (PED!=SNP), and updating (when PED=0) _ individuals sex-code, leaving:
 _ indiviuals
 
 We update the SNPs to build 37 using build_script from http://www.well.ox.ac.uk/~wrayner/strand/
