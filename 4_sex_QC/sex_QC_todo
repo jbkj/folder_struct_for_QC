@@ -1,0 +1,10 @@
+Use the newest BarcodesToParticidWithGenderN.txt from Peter, formatted with ~/useful_files/make_updateallFile.sh
+
+Update sex with:
+plink19 --bfile ../3_IBD_QC/<plink-stem> --update-sex ~/useful_files/update_any_barcode_to_particid_with_sex --make-bed --out <plink-stem>_sexUpdate
+
+Check sex with
+plink19 --bfile <plink-stem>_sexUpdate --check-sex
+
+use awk to find problems:
+awk 'NR>1 && $5!="OK"' plink.sexcheck
