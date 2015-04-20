@@ -1,0 +1,7 @@
+Use strand-update in ~/useful_files and the build_script from http://www.well.ox.ac.uk/~wrayner/strand/
+
+Usage is update_build.sh <bed-file-stem> <strand-file> <output-file-stem>
+where:
+ <bed-file-stem> is the name of your binary ped set minus the .bed, .bim or .fam extension
+<strand-file> is appropriate strand file for you chip and current strand orientation (TOP, SOURCE, etc)
+<output-file-stem> is the name of the new output file to create again minus the .bed, .bim or .fam extension
