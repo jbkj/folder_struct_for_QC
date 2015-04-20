@@ -5,7 +5,9 @@ qsub LDPrune from the scripts folder.
 LDPrune just need the plink-stem name (full path) as argument
 Run the idb_UN.r script on the .genome file and provide a plotname (full paths).
 To remove related individuals in the cohort (remember the plots shows only individuals expected to be unrelated), use awk:
-awk '$7<0.5 {print $1,$2"\n"$3,$4}' <.genome-file> > Failed_IBD_QC_Indidividuals
+But as you only wanna remove one individual from each pair you need to be a bit smart and either pick by callrate or by chance.
+awk '$7<0.5 {print $1,$2"\t"$3,$4}' <.genome-file> > Failed_IBD_QC_Indidividuals.tsv
 
+Pick one individual pr. pair
 Then plink remove on file without HWE:
 plink19 --noweb --bfile <plink.stem> --remove Failed_IBD_QC --make-bed --out COHORT_IBDQC
