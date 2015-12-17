@@ -192,10 +192,10 @@ if(aimQC=="y"):
         waiting9 = str(raw_input("Now running Rpcaforsat.R with the chosen cut-off values. You will be shown the PCA1 plotted against PCA2 with cut-offs and the resulting PCA plot when the discarded samples are removed\nPress enter to continue\n"))
         PCA_satisfied = "n"
         while(PCA_satisfied != "y"):
-            PCA1_low = str(raw_input("PCA1 lower threshold (the discarded samples have to be smaller than this value)\n")) 
-            PCA1_high = str(raw_input("PCA1 upper threshold (the discarded samples have to be larger than this value)\n")) 
-            PCA2_low = str(raw_input("PCA2 lower threshold (the discarded samples have to be smaller than this value)\n")) 
-            PCA2_high = str(raw_input("PCA2 upper threshold (the discarded samples have to be larger than this value)\n")) 
+            PCA1_low = str(raw_input("MDS1 lower threshold (the discarded samples have to be smaller than this value)\n")) 
+            PCA1_high = str(raw_input("MDS1 upper threshold (the discarded samples have to be larger than this value)\n")) 
+            PCA2_low = str(raw_input("MDS2 lower threshold (the discarded samples have to be smaller than this value)\n")) 
+            PCA2_high = str(raw_input("MDS2 upper threshold (the discarded samples have to be larger than this value)\n")) 
             system(path+"/Rpcaforsat.R "+PCA1_low+" "+PCA1_high+" "+PCA2_low+" "+PCA2_high)
             system("display "+path+"/MDS_with_cut-offs.png 2> /dev/null &")
             PCA_satisfied = str(raw_input("If you are satisfied with the chosen cut-offs type: y, otherwise type: n\n"))    
