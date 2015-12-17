@@ -185,10 +185,10 @@ aimQC = str(raw_input("Does the chip have ancestory informative markers (aim)?<y
 
 if(aimQC=="y"):
     if(PCA_needed):
-        waiting7 = str(raw_input("Make sure that you have the complete aimSNP file in your working directory before continuing\nPress enter to continue\n"))
-        system(path+"/aimscript.sh "+path+"/output/MatrixInbreed")
-        waiting8 = str(raw_input("The PCA analysis results is plottet and will be shown when you press enter. You then have to decide what the cut-offs for the two first principal components (PC1 and PC2) have to be. By sorting these away a new PCA plot will be shown and you have the option of try new cut-off values\nPress enter to continue\n"))
-        system("display "+path+"/exomeaimsnps_pca.png 2> /dev/null &")
+        waiting7 = str(raw_input("Make sure that you have files for 1000G (ExomeChip_AIMs.txt, AA1000RG3new_1.0.csv and 1000G folder) in your working directory before continuing\nPress enter to continue\n"))
+        system(path+"/pca_1000g.sh "+path+"/output/MatrixInbreed")
+        waiting8 = str(raw_input("The MDS analysis results is plottet and will be shown when you press enter. You then have to decide what the cut-offs for the two first principal components (PC1 and PC2) have to be. By sorting these away a new MDS plot will be shown and you have the option of try new cut-off values\nPress enter to continue\n"))
+        system("display "+path+"/MDS_firstTime.png 2> /dev/null &")
         waiting9 = str(raw_input("Now running Rpcaforsat.R with the chosen cut-off values. You will be shown the PCA1 plotted against PCA2 with cut-offs and the resulting PCA plot when the discarded samples are removed\nPress enter to continue\n"))
         PCA_satisfied = "n"
         while(PCA_satisfied != "y"):
@@ -197,14 +197,13 @@ if(aimQC=="y"):
             PCA2_low = str(raw_input("PCA2 lower threshold (the discarded samples have to be smaller than this value)\n")) 
             PCA2_high = str(raw_input("PCA2 upper threshold (the discarded samples have to be larger than this value)\n")) 
             system(path+"/Rpcaforsat.R "+PCA1_low+" "+PCA1_high+" "+PCA2_low+" "+PCA2_high)
-            system("display "+path+"/PCA_with_cut-offs.png 2> /dev/null &")
-            system("display "+path+"/PCA.png 2> /dev/null &")
+            system("display "+path+"/MDS_with_cut-offs.png 2> /dev/null &")
             PCA_satisfied = str(raw_input("If you are satisfied with the chosen cut-offs type: y, otherwise type: n\n"))    
-        print('plink19 --noweb --bfile '+path+"/output/MatrixInbreed --remove " + path + "/ami_pca_outliers --make-bed --out "+path+"/output/MatrixPCAQC")
-        system('plink19 --noweb --bfile '+path+"/output/MatrixInbreed --remove " + path + "/ami_pca_outliers --make-bed --out "+path+"/output/MatrixPCAQC")
+        print('plink19 --noweb --bfile '+path+"/output/MatrixInbreed --remove " + path + "/ethnic_outliers.txt --make-bed --out "+path+"/output/MatrixPCAQC")
+        system('plink19 --noweb --bfile '+path+"/output/MatrixInbreed --remove " + path + "/ethnic_outliers.txt --make-bed --out "+path+"/output/MatrixPCAQC")
         print('use MatrixPCAQC for further QC')
         
-        ami_command = "sed 's/\.1//g' "+path+"/ami_pca_outliers | sort | uniq | sed 's/\\t/ /g' > "+path+"/removed_ind_barcodes"
+        ami_command = "sed 's/\.1//g' "+path+"/ethnic_outliers.txt | sort | uniq | sed 's/\\t/ /g' >> "+path+"/removed_ind_barcodes"
         inbreed_command = "cat "+path+"/output/dropsamples_het.txt | sort | uniq | sed 's/\\t/ /g' >> "+path+"/removed_ind_barcodes"
         mind_command = "cat "+path+"/output/MatrixGenoMind.irem | sed 's/\\t/ /g' >> "+path+"/removed_ind_barcodes"
 
