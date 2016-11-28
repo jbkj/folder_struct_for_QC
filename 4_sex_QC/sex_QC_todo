@@ -6,5 +6,18 @@ plink19 --bfile ../3_IBD_QC/<plink-stem> --update-sex ~/useful_files/update_any_
 Check sex with
 plink19 --bfile <plink-stem>_sexUpdate --check-sex
 
+extract missingness (on x-chromosome, or all) and plot miss vs sex-check to check sex and biases:
+
+plink19 --bfile <plink-stem> --missing --chr 23
+
+Rscript plot_sexProbs.R
+
+display missVSsex.png
+
+If you agree with plink (see plot legend) then:
 use awk to find problems:
-awk 'NR>1 && $5!="OK"' plink.sexcheck
+awk '$5=="PROBLEM" {print $1,$2}' plink.sexcheck > failed_sexQC
+
+and remove with plink:
+
+plink19 --bfile <plink-stem>_sexUpdate --remove failed_sexQC --make-bed --out <plink-stem>_sexQC
