@@ -16,9 +16,9 @@ Common alleles: _ to _
 This remove _ individuals leaving:
 _ individuals
 
-For the PCA QC we use the following cut-offs:
-PCA1: _ to _
-PCA2: _ to _
+For the MDS QC we use the following cut-offs:
+MDS1: _ to _
+MDS2: _ to _
 Removing _ individuals leaving:
 _ individuals
 
@@ -26,10 +26,7 @@ _ individuals
 From the pedigree QC we remove _ doublicates and _ individuals with missing or wrong particid (other projects on chip), leaving:
 _ individuals
 
-Before LDpruning we use a HWE threshold on 0.005 which removes _ SNPs leaving:
-_ SNPs.
-
-In IBD QC we remove _ individuals leaving:
+In IBD QC we remove _ individuals (lowest callrate in pairs of undocumented IBD (MZ twins, parent offspring, siblings or half-siblings)) leaving:
 _ individuals
 
 From Sex QC we remove _ individuals with missing (SNP = 0) or wrong gender-code (PED!=SNP), and updating (when PED=0) _ individuals sex-code, leaving:
