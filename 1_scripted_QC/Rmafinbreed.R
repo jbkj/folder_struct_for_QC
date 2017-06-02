@@ -35,7 +35,7 @@ dropsamples<-subset(maf_u, F< rare_thres[1] | F>rare_thres[2])
 dropsamples_o <- subset(maf_o, F < common_thres[1]| F>common_thres[2])
 drop<-rbind(dropsamples_o,dropsamples)
 drop_FID <- drop[,c("FID","IID")]
-FID<- drop_FID[,1]
+FID<- unique(drop_FID[,1])
 
 FID_hyppige <- dropsamples_o[,1]
 FID_rare <- dropsamples[,1]

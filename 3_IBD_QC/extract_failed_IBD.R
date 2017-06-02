@@ -5,6 +5,7 @@ colnames(tmp)[ncol(tmp)] <- 'F_MISS.1stPair'
 t <- merge(tmp,miss[,c(1:2,6)],by.x=c('V3','V4'),by.y=c('FID','IID'))
 colnames(t)[1:4] <- c('FID2','IID2','FID1','IID1')
 t$largestFmiss <- ifelse(t$F_MISS.1stPair>t$F_MISS,1,2)
+keepersFID <- NULL
 
 for(i in 1:nrow(t)){
     keepersFID <- c(keepersFID,t[i,(t[i,'largestFmiss']*2)-1])
