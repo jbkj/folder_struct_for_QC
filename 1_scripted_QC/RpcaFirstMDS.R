@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/local/bin/Rscript
 
 your_1000G_merged_file_filter <- read.table("Matrix_1000G_merged_filter_mds10.mds", header=T)
 New1000RG3plus <-read.csv("Matrix_origin.csv", header=T)

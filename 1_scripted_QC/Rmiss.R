@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/local/bin/Rscript
 imiss <- read.table("output/MatrixMissing.imiss",h=T)
 lmiss <- read.table("output/MatrixMissing.lmiss",h=T)
 

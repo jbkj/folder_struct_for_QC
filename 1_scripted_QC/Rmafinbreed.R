@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/local/bin/Rscript
 args<-commandArgs(TRUE)
 print(args)
 use_thresholds<-args[5]
