@@ -1,0 +1,72 @@
+QC started _ by _
+
+Cohort name: _ (Project ID=)
+
+Chip used: _
+
+We start with _ (_ in final report) individuals and _ SNPs. 
+
+We used a 0.05 cut-off for individuals and SNPs missingness, removing _ individuals and _ SNPs, leaving:
+_ SNPs
+_ indivuals
+
+For the inbreeding QC we use the following cut-offs:
+Rare alleles: _ to _
+Common alleles: _ to _
+This remove _ individuals leaving:
+_ individuals
+
+For the MDS QC we use the following cut-offs:
+MDS1: _ to _
+MDS2: _ to _
+Removing _ individuals leaving:
+_ individuals
+
+
+From the pedigree QC we remove - duplicates and 0 individuals with missing or wrong particid (other projects on chip), leaving:
+_ individuals
+
+In IBD QC we remove _ individuals (lowest callrate in pairs of undocumented IBD (MZ twins, parent offspring, siblings or half-siblings)) leaving:
+_ individuals
+
+From Sex QC we note there 4 known samples without sex that we do not sort out (from DZ twins). We remove _ individuals with missing (SNP = 0) or wrong gender-code (PED!=SNP), and updating (when PED=0) _ individuals sex-code, leaving:
+_ indiviuals
+
+We update the SNPs to build 37 using build_script from http://www.well.ox.ac.uk/~wrayner/strand/
+This leaves us:
+_ SNPs
+
+We have to redo the geno call-rate of 95% again (--geno 0.05) for both the TOP strand and the PLUS strand version.
+For the PLUS_b37 strand version we _ remove SNPs, leaving the final number:
+_ indiviuals 
+_ SNPs
+For the TOP strand version we remove _ SNPs, leaving the final number:
+_ indiviuals 
+_ SNPs
+
+All removed individuals are recorded (as barcodes) in removed_individuals in the root folder with this document.
+
+The two final plinkQC versions (TOP and PLUS_b37) is put in /eva/data/clean/_/chip/
+as well as linked in the final folder from this directory
+
+Thus, the final number of individuals and SNPs removed by QC is:
+BEFORE QC:
+_ (_ in final report) individuals
+_ SNPs
+
+REMOVED in QC:
+_ (_ belonged to another study) individuals
+TOP:
+_ SNPs
+PLUS:
+_ SNPs
+
+Leaving the final number of individuals and SNPs to be:
+AFTER QC:
+_ individuals
+TOP:
+_ SNPs
+PLUS:
+_ SNPs
+
+QC-report finished by _ the _ 
