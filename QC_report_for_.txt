@@ -29,7 +29,7 @@ _ individuals
 In IBD QC we remove _ individuals (lowest callrate in pairs of undocumented IBD (MZ twins, parent offspring, siblings or half-siblings)) leaving:
 _ individuals
 
-From Sex QC we note there 4 known samples without sex that we do not sort out (from DZ twins). We remove _ individuals with missing (SNP = 0) or wrong gender-code (PED!=SNP), and updating (when PED=0) _ individuals sex-code, leaving:
+From Sex QC we remove _ individuals with missing (SNP = 0) or wrong gender-code (PED!=SNP), and updating (when PED=0) _ individuals sex-code, leaving:
 _ indiviuals
 
 We update the SNPs to build 37 using build_script from http://www.well.ox.ac.uk/~wrayner/strand/
@@ -38,10 +38,8 @@ _ SNPs
 
 We have to redo the geno call-rate of 95% again (--geno 0.05) for both the TOP strand and the PLUS strand version.
 For the PLUS_b37 strand version we _ remove SNPs, leaving the final number:
-_ indiviuals 
 _ SNPs
 For the TOP strand version we remove _ SNPs, leaving the final number:
-_ indiviuals 
 _ SNPs
 
 All removed individuals are recorded (as barcodes) in removed_individuals in the root folder with this document.
