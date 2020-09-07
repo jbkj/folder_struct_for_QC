@@ -4,7 +4,7 @@ tmp <- merge(pairs,miss[,c(1:2,6)],by.x=c('V1','V2'),by.y=c('FID','IID'))
 colnames(tmp)[ncol(tmp)] <- 'F_MISS.1stPair'
 t <- merge(tmp,miss[,c(1:2,6)],by.x=c('V3','V4'),by.y=c('FID','IID'))
 colnames(t)[1:4] <- c('FID2','IID2','FID1','IID1')
-t$largestFmiss <- ifelse(t$F_MISS.1stPair>t$F_MISS,1,2)
+t$largestFmiss <- ifelse(t$F_MISS.1stPair>t$F_MISS,2,1)
 keepersFID <- NULL
 keepersIID <- NULL
 
@@ -14,8 +14,8 @@ for(i in 1:nrow(t)){
 }
 
 
-keepers <- cbind(keepersFID,keepersIID)
+
+keepers <- unique(as.data.frame(cbind(keepersFID,keepersIID),stringsAsFactors=F))
 keepers
-keepers <- as.data.frame(cbind(keepersFID,keepersIID),stringsAsFactors=F)
-keepers
+
 write.table(keepers,'Failed_IBD_ind',col.names=F,row.names=F,quote=F)
