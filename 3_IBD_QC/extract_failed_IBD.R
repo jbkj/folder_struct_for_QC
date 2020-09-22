@@ -5,17 +5,17 @@ colnames(tmp)[ncol(tmp)] <- 'F_MISS.1stPair'
 t <- merge(tmp,miss[,c(1:2,6)],by.x=c('V3','V4'),by.y=c('FID','IID'))
 colnames(t)[1:4] <- c('FID2','IID2','FID1','IID1')
 t$largestFmiss <- ifelse(t$F_MISS.1stPair>t$F_MISS,2,1)
-keepersFID <- NULL
-keepersIID <- NULL
+removeFID <- NULL
+removeIID <- NULL
 
 for(i in 1:nrow(t)){
-    keepersFID <- c(keepersFID,t[i,(t[i,'largestFmiss']*2)-1])
-    keepersIID <- c(keepersIID,t[i,t[i,'largestFmiss']*2])
+    removeFID <- c(removeFID,t[i,(t[i,'largestFmiss']*2)-1])
+    removeIID <- c(removeIID,t[i,t[i,'largestFmiss']*2])
 }
 
 
 
-keepers <- unique(as.data.frame(cbind(keepersFID,keepersIID),stringsAsFactors=F))
-keepers
+remove <- unique(as.data.frame(cbind(removeFID,removeIID),stringsAsFactors=F))
+remove
 
-write.table(keepers,'Failed_IBD_ind',col.names=F,row.names=F,quote=F)
+write.table(remove,'Failed_IBD_ind',col.names=F,row.names=F,quote=F)
