@@ -14,15 +14,15 @@ plink.genome <- read.table(inputted_table,head=T)
 
 
 
-png(pngname1,width = 960, height = 960)
+png(pngname1,width = 960, height = 960,type = "cairo")
 
 for(rel in levels(plink.genome$RT)) {
-	par(new = T)
-	print(rel);
-	tmp <- plink.genome[plink.genome$RT==rel,]
-	print(dim(tmp))
-	if(rel=="UN"){
-	plot(tmp$Z0,tmp$Z1,xlim=c(0,1),ylim=c(0,1),axes=T,pch=20)
+        par(new = T)
+        print(rel);
+        tmp <- plink.genome[plink.genome$RT==rel,]
+        print(dim(tmp))
+        if(rel=="UN"){
+        plot(tmp$Z0,tmp$Z1,xlim=c(0,1),ylim=c(0,1),axes=T,pch=20)
 }}
 
 
@@ -34,15 +34,15 @@ text(1,0,"U",font=2, col=rgb(1,0,0,0.3))
 
 dev.off()
 
-png(pngname2,width = 960, height = 960)
+png(pngname2,width = 960, height = 960,type = "cairo")
 
 for(rel in levels(plink.genome$RT)) {
-	par(new = T)
-	print(rel);
-	tmp <- plink.genome[plink.genome$RT==rel,]
-	print(dim(tmp))
-	if(rel=="UN"){
-	plot(tmp$Z1,tmp$Z2,xlim=c(0,1),ylim=c(0,1),axes=T,pch=20)
+        par(new = T)
+        print(rel);
+        tmp <- plink.genome[plink.genome$RT==rel,]
+        print(dim(tmp))
+        if(rel=="UN"){
+        plot(tmp$Z1,tmp$Z2,xlim=c(0,1),ylim=c(0,1),axes=T,pch=20)
 }}
 
 
