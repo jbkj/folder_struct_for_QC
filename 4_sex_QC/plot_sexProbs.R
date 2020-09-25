@@ -2,7 +2,7 @@ sex <- read.table('plink.sexcheck',h=T,as.is=T)
 miss <- read.table('plink.imiss',h=T,as.is=T)
 t <- merge(sex,miss,by=c('FID','IID'))
 
-png('missVSsex.png')
+png('missVSsex.png',type = "cairo")
 plot(t$F,t$F_MISS,bg=t$PEDSEX,pch=20+t$SNPSEX,xlab='F-stat',ylab='X chr. missing')
 points(y=t[t$STATUS=='PROBLEM','F_MISS'],x=t[t$STATUS=='PROBLEM','F'],col='blue',cex=1.5)
 
