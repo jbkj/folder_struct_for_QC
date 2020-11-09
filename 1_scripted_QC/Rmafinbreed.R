@@ -12,15 +12,15 @@ het<-read.table("output/inbreed.het",header=T)
 maf_o <-read.table("output/inbreed_maf001.het",header=T)
 maf_u <-read.table("output/inbreed_maf_u001.het",header=T)
 
-png("output/inbreed.png")
+png("output/inbreed.png",type = "cairo")
 plot(het$F, xlab="Individuals",ylab="Inbreeding coefficient (F)",main="Inbreeding when all alleles are consindered")
 dev.off()
 
-png("output/inbreed_maf001.png")
+png("output/inbreed_maf001.png",type = "cairo")
 plot(maf_o$F, xlab="Individuals",ylab="Inbreeding coefficient (F)",main="Inbreeding when only common alleles are consindered")
 dev.off()
 
-png("output/inbreed_maf_u001.png")
+png("output/inbreed_maf_u001.png",type = "cairo")
 plot(maf_u$F, xlab="Individuals",ylab="Inbreeding coefficient (F)",main="Inbreeding when only rare alleles are consindered")
 dev.off()
 
@@ -55,7 +55,7 @@ disc_ind_u <- matrix(c(maf_u[(maf_u[,1] %in% FID_rare),6],maf_u[(maf_u[,1] %in% 
 
 
 #For all
-png("output/inbreed.png")
+png("output/inbreed.png",type = "cairo")
 plot(het$n,het$F, xlab="Individuals",ylab="Inbreeding coefficient (F)",main="Inbreeding when all alleles are consindered")
 legend("bottom", c("Kept","Discarded"), fill=c('blue', 'red'), horiz=T)
 points(saved_ind[,2], saved_ind[,1], col="blue",pch=16)
@@ -63,7 +63,7 @@ points(disc_ind[,2], disc_ind[,1], col="red",pch=16)
 dev.off()
 
 #For hyppige
-png("output/inbreed_maf001.png")
+png("output/inbreed_maf001.png",type = "cairo")
 plot(maf_o$n,maf_o$F, xlab="Individuals",ylab="Inbreeding coefficient (F)",main="Inbreeding when only common alleles are consindered")
 legend("bottom", c("Kept","Discarded"), fill=c('blue', 'red'), horiz=T)
 abline(h=common_thres[1])
@@ -73,7 +73,7 @@ points(disc_ind_hyp[,2], disc_ind_hyp[,1], col="red",pch=16)
 dev.off()
 
 #For rare
-png("output/inbreed_maf_u001.png")
+png("output/inbreed_maf_u001.png",type = "cairo")
 plot(maf_u$n,maf_u$F, xlab="Individuals",ylab="Inbreeding coefficient (F)",main="Inbreeding when only rare alleles are consindered")
 legend("bottom", c("Kept","Discarded"), fill=c('blue', 'red'), horiz=T)
 abline(h=rare_thres[1])
