@@ -1,4 +1,5 @@
 #!/usr/local/bin/Rscript
+library(dplyr)
 
 args <- commandArgs(trailingOnly=T)
 
@@ -19,3 +20,8 @@ for(id in unique(t$particid)){
 
 removeBarcodes <- t[-which(t$IID %in% keepIIDs),'IID']
 write.table(data.frame(removeBarcodes,removeBarcodes),'bad_dups.barcodes',row.names=F,col.names=F,quote=F)
+
+# make list of barcodes for genome analysis
+duplicates <- t[duplicated(t$particid),]$particid
+subset(t,particid%in%duplicates)-> dupli
+write.table(data.frame(dupli$IID,dupli$IID),'dups.barcodes',row.names=F,col.names=F,quote=F)
