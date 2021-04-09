@@ -20,7 +20,7 @@ fi
 echo $file > test
 echo $outfile >> test
 
-cut -f1 -d" " $file > cohorttmp
+cut -f2 -d" " $file > cohorttmp
 
 grep -f cohorttmp $1 > particid_cohorttmp
 
