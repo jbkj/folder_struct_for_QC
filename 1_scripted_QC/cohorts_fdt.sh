@@ -24,7 +24,7 @@ cut -f2 -d" " $file > cohorttmp
 
 grep -f cohorttmp $1 > particid_cohorttmp
 
-cut -f4,5 particid_cohorttmp -d";" |  sort -u > particid_unique_cohorttmp
+cut -f3,5 particid_cohorttmp -d";" |  sort -u > particid_unique_cohorttmp
 
 cut -f5 particid_cohorttmp -d";" |  cut -f1 -d"-"| sort -u > project_ids_cohorttmp
 
