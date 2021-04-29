@@ -19,6 +19,6 @@ plink19 --allow-no-sex --bfile $1_1000G_merged --geno 0.05 --make-bed --out $1_1
 
 plink19 --allow-no-sex --bfile $1_1000G_merged_geno0.05_filtered --genome --out $1_1000G_merged_geno0.05_filtered_genome
 
-plink19 --allow-no-sex --bfile $1_1000G_merged_geno0.05_filtered --read-genome $1_1000G_merged_geno0.05_filtered_genome.genome --cluster --mds-plot 10 --out Matrix_1000G_merged
+plink19 --allow-no-sex --bfile $1_1000G_merged_geno0.05_filtered --read-genome $1_1000G_merged_geno0.05_filtered_genome.genome --cluster --mds-plot 10 --out Matrix_1000G_merged_filter_mds10
 
 cat $parth/AA1000RG3new_1.0.csv $1_COH_8.csv > Matrix_origin.csv
