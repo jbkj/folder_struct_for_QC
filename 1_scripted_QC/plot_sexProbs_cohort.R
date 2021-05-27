@@ -37,7 +37,9 @@ subset(t, STATUS=="PROBLEM") %>% subset(PEDSEX==0)%>% dim -> nped
 plot(t$F,t$F_MISS,bg=t$PEDSEX,pch=20+t$SNPSEX,xlab='F-stat',ylab='X chr. missing', main=paste(file, ", number of samples", total[1], sep=" "))
 points(y=t[t$STATUS=='PROBLEM','F_MISS'],x=t[t$STATUS=='PROBLEM','F'],col='blue',cex=1.5)
 
-legend(1.1,0.10,
+ly <- max(t$F_MISS)/2
+
+legend(1.1,ly,
 pt.bg=c(1,1,2,2),
 col=c(1,1,1,1,'blue','black','black'),
 pch=c(21,22,21,22,1,1,1),
