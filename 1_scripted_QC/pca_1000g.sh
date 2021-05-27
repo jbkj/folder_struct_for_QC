@@ -21,4 +21,5 @@ plink19 --allow-no-sex --bfile $1_1000G_merged_geno0.05_filtered --genome --out 
 
 plink19 --allow-no-sex --bfile $1_1000G_merged_geno0.05_filtered --read-genome $1_1000G_merged_geno0.05_filtered_genome.genome --cluster --mds-plot 10 --out Matrix_1000G_merged_filter_mds10
 
+awk '{print $1"," "COH""," "8"}' $1.fam > $1_COH_8.csv
 cat $parth/AA1000RG3new_1.0.csv $1_COH_8.csv > Matrix_origin.csv
